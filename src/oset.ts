@@ -6,6 +6,9 @@ const oset = (obj: any, path: string, value: any) => {
     .split('.');
 
   parts.reduce((prev, curr, i) => {
+    if (prev === Object.prototype) {
+      return prev;
+    }
     if (!(typeof prev[curr] == 'object')) {
       prev[curr] = {};
     }
