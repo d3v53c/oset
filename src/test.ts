@@ -82,6 +82,13 @@ describe('oset.js', () => {
     });
   });
 
+  it('should avoid protopath overwrite', () => {
+    const obj = {};
+    oset(obj, '__proto__.polluted', true);
+    oset(obj, 'constructor.prototype.polluted', true);
+    expect(({} as any).polluted).equal(undefined);
+  })
+
   it('replaces non-object values', () => {
     obj = {
       a: 'lala',
